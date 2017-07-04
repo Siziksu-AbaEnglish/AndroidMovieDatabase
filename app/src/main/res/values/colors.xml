@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="dark">#ff151515</color>
+    <color name="transparent_dark">#dd151515</color>
+    <color name="card_no_image">#99000000</color>
+    <color name="rating">#f0d350</color>
+    <color name="rating_background">#c8363636</color>
+</resources>

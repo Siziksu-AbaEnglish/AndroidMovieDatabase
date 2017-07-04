@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Movie Database</string>
+    <string name="no_data_available">No media available</string>
+    <string name="action_search">Search</string>
+    <string name="connection_error">Network not available</string>
+    <string name="year">"Year of release: %s"</string>
+    <string name="connection_timeout">"Connection timeout\n\nTry again refreshing"</string>
+    <string name="rating">0.0</string>
+    <string name="swipe_tutorial">"Swipe left and right to get similar titles.\n(Press back button to dismiss this tutorial)"</string>
+</resources>
