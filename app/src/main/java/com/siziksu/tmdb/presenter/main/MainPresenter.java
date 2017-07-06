@@ -87,7 +87,9 @@ public final class MainPresenter extends IMainPresenter {
         boolean isConnected = connectionManager.doIfThereIsConnection(
                 () -> doIfViewIsRegistered(
                         () -> {
-                            startProgress();
+                            if (!swipeOn) {
+                                startProgress();
+                            }
                             disposable = mainRequests.getMovies(page, text, false)
                                                      .observeOn(AndroidSchedulers.mainThread())
                                                      .subscribe(response -> onMovies(response, filtered),
