@@ -9,7 +9,7 @@ import com.siziksu.tmdb.data.movies.MovieDatabaseClientService;
 
 import javax.inject.Inject;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
 
 public final class MovieDatabaseRequests implements IMovieDatabaseRequests {
@@ -21,13 +21,13 @@ public final class MovieDatabaseRequests implements IMovieDatabaseRequests {
     MovieDatabaseRequests() {}
 
     @Override
-    public Observable<Configuration> getConfiguration() {
+    public Single<Configuration> getConfiguration() {
         return service.getConfiguration(BuildConfig.API_PUBLIC_KEY)
                       .subscribeOn(Schedulers.io());
     }
 
     @Override
-    public Observable<Movies> getMovies(int page, String text, boolean includeAdult) {
+    public Single<Movies> getMovies(int page, String text, boolean includeAdult) {
         if (TextUtils.isEmpty(text)) {
             return service.getTopRatedMovies(page, includeAdult, BuildConfig.API_PUBLIC_KEY)
                           .subscribeOn(Schedulers.io());
@@ -38,7 +38,7 @@ public final class MovieDatabaseRequests implements IMovieDatabaseRequests {
     }
 
     @Override
-    public Observable<Movies> getSimilarMovies(int movieId, int page, boolean includeAdult) {
+    public Single<Movies> getSimilarMovies(int movieId, int page, boolean includeAdult) {
         return service.getSimilarMovies(movieId, page, includeAdult, BuildConfig.API_PUBLIC_KEY)
                       .subscribeOn(Schedulers.io());
     }
