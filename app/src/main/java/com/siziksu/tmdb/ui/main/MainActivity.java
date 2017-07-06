@@ -242,11 +242,7 @@ public final class MainActivity extends AppCompatActivity implements IMainView {
     }
 
     private void showError(boolean value, String string) {
-        if (value) {
-            error.setText(string);
-            error.setVisibility(View.VISIBLE);
-        } else {
-            error.setVisibility(View.GONE);
-        }
+        error.setVisibility(value ? View.VISIBLE : View.GONE);
+        error.setText(string);
     }
 }

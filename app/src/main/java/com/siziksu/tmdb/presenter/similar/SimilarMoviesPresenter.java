@@ -2,7 +2,6 @@ package com.siziksu.tmdb.presenter.similar;
 
 import android.util.Log;
 
-import com.siziksu.tmdb.R;
 import com.siziksu.tmdb.common.manager.ConnectionManager;
 import com.siziksu.tmdb.common.manager.PreferencesManager;
 import com.siziksu.tmdb.common.model.response.movies.Movie;
@@ -54,7 +53,7 @@ public final class SimilarMoviesPresenter extends ISimilarMoviesPresenter {
                                                      .subscribe(this::onMovies,
                                                                 this::onError);
                         }));
-        tellToTheViewIfItIsConnected(isConnected);
+        tellToTheViewIfItIsConnected(isConnected, this::stopProgress);
     }
 
     @Override
@@ -94,16 +93,5 @@ public final class SimilarMoviesPresenter extends ISimilarMoviesPresenter {
 
     private void stopProgress() {
         doIfViewIsRegistered(() -> view.showProgress(false));
-    }
-
-    private void tellToTheViewIfItIsConnected(boolean isConnected) {
-        doIfViewIsRegistered(
-                () -> {
-                    if (!isConnected) {
-                        Log.e(TAG, view.getActivity().getResources().getString(R.string.connection_error));
-                        stopProgress();
-                    }
-                    view.showConnected(isConnected);
-                });
     }
 }

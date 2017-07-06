@@ -23,10 +23,13 @@
     </android.support.v4.widget.SwipeRefreshLayout>
 
     <TextView
-        android:visibility="gone"
+        android:visibility="visible"
         android:id="@+id/movies_error"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/error_background"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
         android:layout_marginTop="40dp"
         android:layout_centerHorizontal="true"
         android:text="@string/no_data_available"

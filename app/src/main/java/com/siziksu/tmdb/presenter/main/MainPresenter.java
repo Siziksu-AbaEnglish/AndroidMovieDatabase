@@ -2,7 +2,6 @@ package com.siziksu.tmdb.presenter.main;
 
 import android.util.Log;
 
-import com.siziksu.tmdb.R;
 import com.siziksu.tmdb.common.Constants;
 import com.siziksu.tmdb.common.manager.ConnectionManager;
 import com.siziksu.tmdb.common.manager.PreferencesManager;
@@ -50,7 +49,7 @@ public final class MainPresenter extends IMainPresenter {
                                                    this::onError);
                         }
                 ));
-        tellToTheViewIfItIsConnected(isConnected);
+        tellToTheViewIfItIsConnected(isConnected, this::stopProgress);
     }
 
     @Override
@@ -95,7 +94,7 @@ public final class MainPresenter extends IMainPresenter {
                                                      .subscribe(response -> onMovies(response, filtered),
                                                                 this::onError);
                         }));
-        tellToTheViewIfItIsConnected(isConnected);
+        tellToTheViewIfItIsConnected(isConnected, this::stopProgress);
     }
 
     private void cancelLastRequest(int page) {
@@ -166,16 +165,5 @@ public final class MainPresenter extends IMainPresenter {
                 view.showProgress(false);
             }
         });
-    }
-
-    private void tellToTheViewIfItIsConnected(boolean isConnected) {
-        doIfViewIsRegistered(
-                () -> {
-                    if (!isConnected) {
-                        Log.e(TAG, view.getActivity().getResources().getString(R.string.connection_error));
-                        stopProgress();
-                    }
-                    view.showConnected(isConnected);
-                });
     }
 }
